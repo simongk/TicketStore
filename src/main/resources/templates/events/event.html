@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" layout:decorator="layout" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${event.name}"></title>
+</head>
+
+<div layout:fragment="content">
+
+    <h3 th:text="${event.name}"></h3>
+    <h4 th:text="${event.date}"></h4>
+    <h6 th:text="${event.location}"></h6>
+    <p th:text="'Dostępna ilość biletów:' + ${event.tickets}"></p>
+    <article th:text=" ${event.description}">
+    </article>
+
+    <form th:action="@{'/events/{name}/buy' (name=${event.name})}" th:object="${cart}" method="post">
+    <div class="form-group">
+        <label for="tickets">Ile biletów chcesz kupić?</label>
+        <input type="number" class="form-control" th:field="*{ticketQuantity}" id="tickets"
+               placeholder="Podaj ilość biletów do kupna" value="1"> </input>
+    </div>
+        <input type="submit" value="Kup bilety"/>
+    </form>
+
+</div>
+
+</html>

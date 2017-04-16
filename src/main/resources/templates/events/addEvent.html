@@ -1,0 +1,43 @@
+<html layout:decorator="layout">
+<head>
+    <style type="text/css">
+        .bs-example {
+            margin: 20px;
+        }
+    </style>
+    <title>Dodaj wydarzenie</title>
+</head>
+<div layout:fragment="content">
+    <div class="bs-example">
+        <form th:action="@{/events/add}" th:object="${event}" method="post">
+            <div class="form-group">
+                <label for="name">Nazwa wydarzenia</label>
+                <input type="text" class="form-control" th:field="*{name}" id="name"
+                       placeholder="Nazwa wydarzenia"> </input>
+            </div>
+            <div class="form-group">
+                <label for="location">Gdzie?</label>
+                <input type="text" class="form-control" th:field="*{location}" id="location"
+                       placeholder="Miasto, ulica, lokal"> </input>
+            </div>
+            <div class="form-group">
+                <label for="date">Kiedy?</label>
+                <input type="text" class="form-control" th:field="*{date}" id="date"
+                       placeholder="Dokładna data, godzina"> </input>
+            </div>
+            <div class="form-group">
+                <label for="tickets">Ile biletow?</label>
+                <input type="number" class="form-control" th:field="*{tickets}" id="tickets"
+                       placeholder="Dokładna ilość biletów na sprzedaż"> </input>
+            </div>
+            <div class="form-group">
+                <label for="description">Opis wydarzenia</label>
+                <textarea type="text" class="form-control" th:field="*{description}" id="description"
+                          placeholder="Opis"> </textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Dodaj Wydarzenie"/>
+        </form>
+
+    </div>
+</div>
+</html>
