@@ -31,7 +31,7 @@ public class EventService {
         cartRepository.save(cart);
     }
 
-    Event getEventByName(@PathVariable String name) {
+    Event getEventByName(String name) {
         return eventRepository.findByName(name);
     }
 
@@ -44,7 +44,7 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    void addEventToDatabase(@ModelAttribute Event event) {
+    void addEventToDatabase(Event event) {
         eventRepository.save(event);
     }
 
