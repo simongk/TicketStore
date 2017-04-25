@@ -34,6 +34,9 @@ public class EventService {
     }
 
     void updateTicketQuantity(Cart cart, Event event) {
+        if(event.getTickets() < cart.getTicketQuantity()) {
+            cart.setTicketQuantity(event.getTickets());
+        }
         event.setTickets(event.getTickets() - cart.getTicketQuantity());
         addEventToDatabase(event);
     }
