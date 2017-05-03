@@ -34,5 +34,19 @@ public class EventServiceTest {
         Assert.assertEquals(cart.getTicketQuantity(), 20);
     }
 
+    @Test
+    public void priceShouldBeDiscounted(){
+        //given
+        Event event = new Event();
+        event.setPrice(100);
+        String ticketType = "Ulgowy";
+
+        //when
+        eventService.calculateDiscount(event, ticketType);
+
+        //then
+        Assert.assertEquals(80,event.getPrice());
+    }
+
 
 }

@@ -47,7 +47,8 @@ public class EventController {
 
 
     @PostMapping("/{name}/buy")
-    public String submitTicketPurchase(@ModelAttribute Cart cart, @PathVariable String name) {
+    public String submitTicketPurchase(@ModelAttribute Cart cart,
+                                       @PathVariable String name) {
         eventService.addCartToDatabase(cart, name);
         eventService.updateTicketQuantity(cart, cart.getEvent());
         return "redirect:/paymentData/" + cart.getId();
@@ -55,15 +56,7 @@ public class EventController {
 
     @GetMapping("/{id}/edit")
     public String editEvent(@PathVariable Long id, Model model) {
-        model.addAttribute("event",eventService.getById(id));
+        model.addAttribute("event", eventService.getEventById(id));
         return "events/addEvent";
     }
-
-    /*
-    ToDo pobrane informacje laduja do bazy na chwile i przekazywane sa do nastepnego formularza, gdzie uzytkownik wypelnia dane(Przelewy24)
-    ToDo wysylanie maili po zakonczonej tranzakcji z faktura
-    ToDo powrot do strony glownej
-    */
-
-
 }

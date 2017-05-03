@@ -20,6 +20,7 @@ public class Cart {
     private Long id;
     private int ticketQuantity;
     private int totalCost;
+    private String ticketType;
 
     @OneToOne
     private Event event;

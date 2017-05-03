@@ -14,12 +14,20 @@
     <article th:text=" ${event.description}">
     </article>
 
-    <form th:action="@{'/events/{name}/buy' (name=${event.name})}" th:object="${cart}" method="post">
-    <div class="form-group">
-        <label for="tickets">Ile biletów chcesz kupić?</label>
-        <input type="number" class="form-control" th:field="*{ticketQuantity}" id="tickets"
-               placeholder="Podaj ilość biletów do kupna" value="1"> </input>
-    </div>
+    <form th:action="@{'/events/{name}/buy' (name=${event.name})}"
+          th:object="${cart}" method="post">
+        <div class="form-group">
+            <label for="tickets">Ile biletów chcesz kupić?</label>
+            <input type="number" class="form-control" th:field="*{ticketQuantity}" id="tickets"
+                   placeholder="Podaj ilość biletów do kupna" value="1"> </input>
+        </div>
+        <div class="form-group">
+            <label>Wybierz typ biletu:</label>
+            <input type="radio" th:field="*{ticketType}" th:value="Ulgowy"> Ulgowy </input>
+        </div>
+        <div class="form-group">
+            <input type="radio" th:field="*{ticketType}" th:value="Normalny"> Normalny </input>
+        </div>
         <input type="submit" value="Kup bilety"/>
     </form>
 

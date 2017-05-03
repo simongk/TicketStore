@@ -5,7 +5,6 @@ import com.simongk.cart.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -26,8 +25,10 @@ public class EventService {
     void addCartToDatabase(Cart cart, String eventName) {
         Event event = getEventByName(eventName);
         cart.setEvent(event);
+        calculateDiscount(event, cart.getTicketType());
         cart.setTotalCost(cart.getTicketQuantity() * event.getPrice());
         cartRepository.save(cart);
+        System.out.println(cart.getId());
     }
 
     Event getEventByName(String name) {
@@ -35,27 +36,34 @@ public class EventService {
     }
 
     void updateTicketQuantity(Cart cart, Event event) {
-        if(event.getTickets() < cart.getTicketQuantity()) {
+        if (event.getTickets() < cart.getTicketQuantity()) {
             cart.setTicketQuantity(event.getTickets());
         }
         event.setTickets(event.getTickets() - cart.getTicketQuantity());
         addEventToDatabase(event);
     }
 
+    public void calculateDiscount(Event event, String ticketType){
+        if (ticketType.equals("Ulgowy")) {
+            event.setPrice((int) (event.getPrice()*0.8));
+            System.out.println("nowa suma");
+        } else {
+            event.setPrice(event.getPrice());
+        }
+    }
+
+
     List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
 
-    void addEventToDatabase(Event event) {
+    public void addEventToDatabase(Event event) {
         eventRepository.save(event);
     }
 
-    Event getById(Long id){
+    Event getEventById(Long id) {
         return eventRepository.findOne(id);
     }
 
-    void deleteEventFromDatabase(Event event){
-        eventRepository.delete(event.getId());
-    }
 
 }
