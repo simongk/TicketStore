@@ -22,5 +22,6 @@ public class CartController {
     @GetMapping("/{id}")
     public String checkCart(@PathVariable Long id, Model model){
         model.addAttribute("cart",cartRepository.findOne(id));
+        return "cart/cart";
     }
 }
