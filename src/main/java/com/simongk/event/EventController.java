@@ -33,7 +33,7 @@ public class EventController {
     }
 
     @PostMapping("/add")
-    public String submitEvent(@ModelAttribute Event event) {
+    public String submitEvent(Event event) {
         eventService.addEventToDatabase(event);
         return "redirect:/events/all";
     }
@@ -51,6 +51,12 @@ public class EventController {
         eventService.addCartToDatabase(cart, name);
         eventService.updateTicketQuantity(cart, cart.getEvent());
         return "redirect:/paymentData/" + cart.getId();
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editEvent(@PathVariable Long id, Model model) {
+        model.addAttribute("event",eventService.getById(id));
+        return "events/addEvent";
     }
 
     /*

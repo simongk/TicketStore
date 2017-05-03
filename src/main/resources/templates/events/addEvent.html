@@ -10,6 +10,7 @@
 <div layout:fragment="content">
     <div class="bs-example">
         <form th:action="@{/events/add}" th:object="${event}" method="post">
+            <input type="hidden" th:field="*{id}"/>
             <div class="form-group">
                 <label for="name">Nazwa wydarzenia</label>
                 <input type="text" class="form-control" th:field="*{name}" id="name"

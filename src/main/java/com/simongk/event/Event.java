@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 /**
  * Created by Groobaz on 2017-04-15.
@@ -30,7 +31,7 @@ public class Event {
     @NonNull
     private String location;
     @NonNull
-    private String date;
+    private LocalDate date;
     @NonNull
     private int tickets;
     @NonNull

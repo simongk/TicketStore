@@ -5,6 +5,7 @@ import com.simongk.cart.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -47,6 +48,14 @@ public class EventService {
 
     void addEventToDatabase(Event event) {
         eventRepository.save(event);
+    }
+
+    Event getById(Long id){
+        return eventRepository.findOne(id);
+    }
+
+    void deleteEventFromDatabase(Event event){
+        eventRepository.delete(event.getId());
     }
 
 }

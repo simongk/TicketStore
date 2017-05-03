@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
+
 @SpringBootApplication
 public class MjmticketsApplication {
 
@@ -17,8 +19,8 @@ public class MjmticketsApplication {
 	@Bean
 	public CommandLineRunner testData(EventRepository repository){
 		return e -> {
-			repository.save(new Event("Teatro Cubano", "Krakow", "15-05-2017",30,150,"Lorem ipsum dolor mate, a loremnioa asdna dasd"));
-			repository.save(new Event("Las Palmas", "Krakow","15-03-2017",40,150,"Lorem ipsum dolor mate, a loremnioa asdna dasd"));
+			repository.save(new Event("Teatro Cubano", "Krakow", LocalDate.of(2017,5,15),30,150,"Lorem ipsum dolor mate, a loremnioa asdna dasd"));
+			repository.save(new Event("Las Palmas", "Krakow",LocalDate.of(2015,3,3),40,150,"Lorem ipsum dolor mate, a loremnioa asdna dasd"));
 		};
 	}
 }

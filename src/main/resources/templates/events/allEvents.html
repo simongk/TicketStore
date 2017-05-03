@@ -14,6 +14,7 @@
         <th>Data wydarzenia</th>
         <th>Ilosc biletow</th>
         <th>Przejdź do wydarzenia</th>
+        <th>Edytuj wydarzenie</th>
     </tr>
     </thead>
 
@@ -27,6 +28,11 @@
     <td>
         <a th:href="@{'/events/{name}' (name=${event.name})}">
             <p>Przejdź</p>
+        </a>
+    </td>
+    <td>
+        <a th:href="@{'/events/{id}/edit' (id=${event.id})}">
+            <p>Edytuj</p>
         </a>
     </td>
     </tr>
