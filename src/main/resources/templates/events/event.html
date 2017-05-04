@@ -22,11 +22,13 @@
                    placeholder="Podaj ilość biletów do kupna" value="1"> </input>
         </div>
         <div class="form-group">
-            <label>Wybierz typ biletu:</label>
+        <label>Wybierz typ biletu</label>
             <input type="radio" th:field="*{ticketType}" th:value="Ulgowy"> Ulgowy </input>
+            <input type="radio" th:field="*{ticketType}" th:value="Normalny"> Normalny </input>
         </div>
         <div class="form-group">
-            <input type="radio" th:field="*{ticketType}" th:value="Normalny"> Normalny </input>
+            <label>Wpisz kod rabatowy:</label>
+            <input type="text" th:field="*{discountCode}" class="form-control" placeholder="Podaj kod rabatowy"> </input>
         </div>
         <input type="submit" value="Kup bilety"/>
     </form>

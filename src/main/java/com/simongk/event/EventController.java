@@ -1,6 +1,7 @@
 package com.simongk.event;
 
 import com.simongk.cart.Cart;
+import com.simongk.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
 
     private final EventService eventService;
+    private final CartService cartService;
 
     @Autowired
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService, CartService cartService) {
         this.eventService = eventService;
+        this.cartService = cartService;
     }
 
     @GetMapping("/all")
@@ -43,15 +46,6 @@ public class EventController {
         model.addAttribute("event", eventService.getEventByName(name));
         model.addAttribute("cart", new Cart());
         return "events/event";
-    }
-
-
-    @PostMapping("/{name}/buy")
-    public String submitTicketPurchase(@ModelAttribute Cart cart,
-                                       @PathVariable String name) {
-        eventService.addCartToDatabase(cart, name);
-        eventService.updateTicketQuantity(cart, cart.getEvent());
-        return "redirect:/paymentData/" + cart.getId();
     }
 
     @GetMapping("/{id}/edit")

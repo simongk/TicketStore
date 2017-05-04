@@ -21,6 +21,7 @@ public class Cart {
     private int ticketQuantity;
     private int totalCost;
     private String ticketType;
+    private String discountCode;
 
     @OneToOne
     private Event event;

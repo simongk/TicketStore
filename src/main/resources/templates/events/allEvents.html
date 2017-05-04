@@ -13,6 +13,7 @@
         <th>Lokalizacja wydarzenia</th>
         <th>Data wydarzenia</th>
         <th>Ilosc biletow</th>
+        <th>Cena za bilet</th>
         <th>Przejdź do wydarzenia</th>
         <th>Edytuj wydarzenie</th>
     </tr>
@@ -25,6 +26,7 @@
     <td th:text="${event.location}"></td>
     <td th:text="${event.date}"></td>
     <td th:text="${event.tickets}"></td>
+    <td th:text="${event.price}"></td>
     <td>
         <a th:href="@{'/events/{name}' (name=${event.name})}">
             <p>Przejdź</p>

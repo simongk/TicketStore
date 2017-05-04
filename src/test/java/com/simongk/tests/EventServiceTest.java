@@ -1,7 +1,10 @@
-package com.simongk.event;
+package com.simongk.tests;
 
 import com.simongk.cart.Cart;
+import com.simongk.event.Event;
+import com.simongk.event.EventService;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +21,18 @@ public class EventServiceTest {
     @Autowired
     private EventService eventService;
 
+    private Cart cart;
+    private Event event;
+
+    @Before
+    public void setup(){
+        cart = new Cart();
+        event = new Event();
+    }
+
     @Test
     public void ticketQuantityShouldNotExceedLimit(){
         //given
-        Cart cart = new Cart();
-        Event event = new Event();
-
         cart.setTicketQuantity(30);
         event.setTickets(20);
 
@@ -32,20 +41,6 @@ public class EventServiceTest {
 
         //then
         Assert.assertEquals(cart.getTicketQuantity(), 20);
-    }
-
-    @Test
-    public void priceShouldBeDiscounted(){
-        //given
-        Event event = new Event();
-        event.setPrice(100);
-        String ticketType = "Ulgowy";
-
-        //when
-        eventService.calculateDiscount(event, ticketType);
-
-        //then
-        Assert.assertEquals(80,event.getPrice());
     }
 
 
