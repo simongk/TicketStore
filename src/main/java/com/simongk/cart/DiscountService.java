@@ -30,7 +30,7 @@ public class DiscountService {
         }
     }
 
-    private double calculateDiscount(double price, double discount) {
+    public double calculateDiscount(double price, double discount) {
         return price*discount;
     }
 

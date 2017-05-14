@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by Groobaz on 2017-04-15.
  */
@@ -15,12 +17,10 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
 
     private final EventService eventService;
-    private final CartService cartService;
 
     @Autowired
-    public EventController(EventService eventService, CartService cartService) {
+    public EventController(EventService eventService) {
         this.eventService = eventService;
-        this.cartService = cartService;
     }
 
     @GetMapping("/all")
@@ -44,7 +44,7 @@ public class EventController {
     @GetMapping("/{name}")
     public String getEventByName(@PathVariable String name, Model model) {
         model.addAttribute("event", eventService.getEventByName(name));
-        model.addAttribute("cart", new Cart());
+        model.addAttribute("cart", new Cart(new ArrayList<>(2)));
         return "events/event";
     }
 
