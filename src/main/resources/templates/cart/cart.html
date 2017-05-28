@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <div layout:fragment="content">
+        <table>
+            <tr th:each="cart:${carts}">
+                <td th:text="'Id biletu: ' + ${cart.id}"></td>
+                <td th:text="'Koszt biletu' + ${cart.totalCost}"></td>
+            </tr>
+        </table>
 
-</body>
+        <p th:text="'Koszt calosci' + ${order.finalCost}"></p>
+        <p>Zaplac za pomoca Przelewy 24</p>
+    </div>
 </html>

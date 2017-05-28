@@ -7,9 +7,7 @@
 <div layout:fragment="content">
 
     <h1 th:text="'Płatność za ' + ${cart.event.name}"></h1>
-    <h1>Dane do przelewu</h1>
-    <h3>Nr konta: xxxx xxxx xxxx xxxx</h3>
-    <h3>Nazwa sprzedawcy: MJM</h3>
+    <h2 th:text="${cart.user.name}"></h2>
     <h3 th:text="'Kwota: ' + ${cart.totalCost}"></h3>
 </div>
 

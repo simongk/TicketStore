@@ -1,30 +1,25 @@
 package com.simongk.user;
 
-import com.simongk.cart.Cart;
-import com.simongk.cart.CartRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * Created by Groobaz on 2017-04-15.
+ * Created by Szymon Gasienica-Kotelnicki on 21.05.17.
  */
 @Controller
 public class UserController {
+    private final UserService userService;
 
-    private final CartRepository cartRepository;
-
-    @Autowired
-    public UserController(CartRepository cartRepository) {
-        this.cartRepository = cartRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/paymentData/{id}")
-    public String getPaymentData(Model model, @PathVariable Long id) {
-        Cart cart = cartRepository.findOne(id);
-        model.addAttribute("cart", cart);
-        return "user/paymentData";
+
+    @GetMapping("/user/{id}")
+    public String getUserPage(Model model, @PathVariable Long id){
+        model.addAttribute("user",userService.getUserById(id));
+        return "user/user";
     }
 }

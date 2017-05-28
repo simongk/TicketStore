@@ -5,42 +5,49 @@
 </head>
 <div layout:fragment="content">
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Nazwa wydarzenia</th>
-        <th>Lokalizacja wydarzenia</th>
-        <th>Data wydarzenia</th>
-        <th>Ilosc biletow</th>
-        <th>Cena za bilet</th>
-        <th>Przejdź do wydarzenia</th>
-        <th>Edytuj wydarzenie</th>
-    </tr>
-    </thead>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nazwa wydarzenia</th>
+            <th>Lokalizacja wydarzenia</th>
+            <th>Data wydarzenia</th>
+            <th>Ilosc biletow</th>
+            <th>Cena za bilet</th>
+            <th>Przejdź do wydarzenia</th>
+            <th>Edytuj wydarzenie</th>
+        </tr>
+        </thead>
 
-    <tbody>
-    <tr th:each="event: ${events}">
-    <td th:text="${event.id}"></td>
-    <td th:text="${event.name}"></td>
-    <td th:text="${event.location}"></td>
-    <td th:text="${event.date}"></td>
-    <td th:text="${event.tickets}"></td>
-    <td th:text="${event.price}"></td>
-    <td>
-        <a th:href="@{'/events/{name}' (name=${event.name})}">
-            <p>Przejdź</p>
-        </a>
-    </td>
-    <td>
-        <a th:href="@{'/events/{id}/edit' (id=${event.id})}">
-            <p>Edytuj</p>
-        </a>
-    </td>
-    </tr>
-    </tbody>
-</table>
+        <tbody>
+        <tr th:each="event: ${events}">
+            <td th:text="${event.id}"></td>
+            <td th:text="${event.name}"></td>
+            <td th:text="${event.location}"></td>
+            <td th:text="${event.date}"></td>
+            <td th:text="${event.tickets}"></td>
+            <td th:text="${event.price}"></td>
+            <td>
+                <a th:href="@{'/event/{name}' (name=${event.name})}">
+                    <p>Przejdź</p>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/{eventId}/edit' (eventId=${event.id})}">
+                    <p>Edytuj</p>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/setToPast/{eventId}' (eventId=${event.id})}" id="deleteTicket">
+                    <p>Zakończ sprzedaż</p>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<a th:href="@{/events/add}"><button class="btn btn-primary" value="Dodaj wydarzenie">Dodaj Wydarzenie</button></a>
+    <a th:href="@{/events/add}">
+        <button class="btn btn-primary" value="Dodaj wydarzenie">Dodaj Wydarzenie</button>
+    </a>
 </div>
 </html>
