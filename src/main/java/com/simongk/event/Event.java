@@ -18,6 +18,8 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class Event {
 
+
+    //TODO: add sold tickets to db, copy event to past event, create admin mappings
     @Id
     @GeneratedValue
     private Long id;
@@ -31,9 +33,12 @@ public class Event {
     @NonNull
     private String location;
     @NonNull
-    private LocalDate date;
+    private String date;
     @NonNull
     private int tickets;
+
+    private int soldTickets;
+
     @NonNull
     private int price;
     @NonNull

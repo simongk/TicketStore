@@ -1,12 +1,10 @@
 package com.simongk.cart;
 
 import com.simongk.event.Event;
+import com.simongk.user.User;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by Groobaz on 2017-04-15.
@@ -22,6 +20,9 @@ public class Cart {
     private int totalCost;
     private String ticketType;
     private String discountCode;
+
+    @ManyToOne
+    private User user;
 
     @OneToOne
     private Event event;

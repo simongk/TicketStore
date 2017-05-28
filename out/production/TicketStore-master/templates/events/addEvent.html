@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="pl" layout:decorator="layout" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorator="layout">
 <head>
-    <title>Dane kupującego</title>
+    <style type="text/css">
+        .bs-example {
+            margin: 20px;
+        }
+    </style>
+    <title>Dodaj wydarzenie</title>
 </head>
-
 <div layout:fragment="content">
     <div class="bs-example">
-        <form th:action="@{/users/add}" th:object="${user}" method="post">
+        <form th:action="@{/events/add}" th:object="${event}" method="post">
+            <input type="hidden" th:field="*{id}"/>
             <div class="form-group">
                 <label for="name">Nazwa wydarzenia</label>
                 <input type="text" class="form-control" th:field="*{name}" id="name"
@@ -32,8 +36,14 @@
                 <textarea type="text" class="form-control" th:field="*{description}" id="description"
                           placeholder="Opis"> </textarea>
             </div>
+            <div class="form-group">
+                <label for="price">Cena jednego biletu</label>
+                <textarea type="text" class="form-control" th:field="*{price}" id="price"
+                          placeholder="Podaj cene za jeden bilet"> </textarea>
+            </div>
             <input type="submit" class="btn btn-primary" value="Dodaj Wydarzenie"/>
         </form>
 
     </div>
+</div>
 </html>
