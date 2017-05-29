@@ -35,7 +35,7 @@ public class PastEventController {
         pastEvent.setTotalCash(pastEvent.getEventPrice().multiply(BigDecimal.valueOf(pastEvent.getSoldTickets())));
         pastEventRepository.save(pastEvent);
         eventRepository.delete(event);
-        return "redirect:/allEvents";
+        return "redirect:/admin/allEvents";
     }
 
     //admin

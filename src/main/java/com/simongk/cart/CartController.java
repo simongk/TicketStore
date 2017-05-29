@@ -37,7 +37,7 @@ public class CartController {
 
 
     //ROLE: USER
-    @PostMapping("user/event/{name}/buy")
+    @PostMapping("mjm/{name}")
     public String addTicketToCart(@ModelAttribute Cart cart,
                                   @PathVariable String name) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -46,20 +46,20 @@ public class CartController {
         cartService.addCartToDatabase(cart, name, user);
         user.getCarts().add(cartRepository.findOne(cart.getId()));
         eventService.updateTicketQuantity(cart, cart.getEvent());
-        return "redirect:/event/" + name;
+        return "redirect:/mjm/" + name;
     }
 
     //ROLE: USER
     @PreAuthorize("#id == principal.id")
-    @GetMapping("user/userOrder/{id}")
-    public String getUserOrder(Model model,@PathVariable Long id){
+    @GetMapping("/{id}/koszyk")
+    public String getUserOrder(Model model, @PathVariable Long id){
         List<Cart> carts = userRepository.findOne(id).getCarts();
         model.addAttribute("carts", carts);
         Order order = new Order();
         order.setUser(userRepository.findOne(id));
         order.setFinalCost(orderService.calculateOrderPrice(carts));
         model.addAttribute("order", order);
-        return "cart/cart";
+        return "cart";
     }
 
 
