@@ -1,0 +1,21 @@
+<html layout:decorator="onlineStore">
+<div class="container" layout:fragment="content">
+  <div class="row">
+    <div class="col-sm-4" th:each="event : ${events}">
+      <a th:href="@{'/mjm/{name}' (name=${event.name}) }">
+      <div class="panel panel-primary">
+          <div class="panel-heading" th:text="${event.name} "></div>
+        <div class="panel-body">
+          <p th:text="'Gdzie? ' +  ${event.location} " > </p>
+          <p th:text="'Kiedy? ' + ${event.date} "> </p>
+        </div>
+        <div class="panel-footer">
+          <p th:text="'Ilość dostępnych biletów: ' + ${event.tickets}"> </p>
+          <p th:text="'Cena jednego biletu: ' + ${event.price}"> </p>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+</div>
+</html>

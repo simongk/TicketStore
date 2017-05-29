@@ -1,4 +1,4 @@
-<html layout:decorator="layout" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorator="onlineStore" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Wydarzenia</title>
 
@@ -38,7 +38,7 @@
                 </a>
             </td>
             <td>
-                <a th:href="@{'/setToPast/{eventId}' (eventId=${event.id})}" id="deleteTicket">
+                <a th:href="@{'/admin/setToPast/{eventId}' (eventId=${event.id})}" id="deleteTicket">
                     <p>Zakończ sprzedaż</p>
                 </a>
             </td>
