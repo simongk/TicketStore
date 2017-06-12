@@ -28,30 +28,36 @@ public class EventController {
         this.userRepository = userRepository;
     }
 
-    //TODO: create another view for users
+
+
+    @GetMapping("/mjm/wydarzenia")
+    public String getAllEventsForUsersPage(Model model){
+        model.addAttribute("events",eventService.getAllEvents());
+        return "userEvents";
+    }
     //admin
-    @GetMapping("admin/allEvents")
+    @GetMapping("/admin/wydarzenia")
     public String getAllEvents(Model model) {
         model.addAttribute("events", eventService.getAllEvents());
-        return "events/allEvents";
+        return "allEvents";
     }
 
     //admin
-    @GetMapping("admin/addEvent")
+    @GetMapping("/admin/dodajWydarzenie")
     public String getEventForm(Model model) {
         model.addAttribute("event", new Event());
-        return "events/addEvent";
+        return "addEvent";
     }
 
     //admin only
-    @PostMapping("admin/addEvent")
+    @PostMapping("/admin/dodajWydarzenie")
     public String submitEvent(Event event) {
         eventService.addEventToDatabase(event);
-        return "redirect:/allEvents";
+        return "redirect:/admin/wydarzenia";
     }
 
     //all avaible
-    @GetMapping("user/event/{name}")
+    @GetMapping("mjm/{name}")
     public String getEventByName(@PathVariable String name, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
@@ -59,7 +65,8 @@ public class EventController {
         model.addAttribute("event", eventService.getEventByName(name));
         model.addAttribute("cart", new Cart());
         model.addAttribute("cartList", user.getCarts());
-        return "events/event";
+        model.addAttribute("userId",user.getId());
+        return "singleEvent";
     }
 
     //ROLE: admin

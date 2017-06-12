@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl" layout:decorator="onlineStore" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${event.name}"></title>
+</head>
+
+<div layout:fragment="content">
+
+    <div class="thumbnail">
+        <img class="img-responsive" src="http://placehold.it/800x300" alt="Plakat wydarzenia"> </img>
+        <div class="caption-full">
+            <h4 class="pull-right" th:text="${event.price} + 'zł'"></h4>
+            <strong> <h4 th:text="${event.name}"></h4></strong>
+            <p th:text="${event.description}"></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+        </div>
+    </div>
+
+    <form th:action="@{'/mjm/{name}' (name=${event.name})}"
+          th:object="${cart}" method="post">
+        <div class="form-group">
+            <label for="tickets">Ile biletów chcesz kupić?</label>
+            <input type="number" class="form-control" th:field="*{ticketQuantity}" id="tickets"
+                   placeholder="Podaj ilość biletów do kupna" value="1"> </input>
+        </div>
+        <div class="form-group">
+            <label>Wybierz typ biletu</label>
+            <input type="radio" th:field="*{ticketType}" th:value="Ulgowy"> Ulgowy </input>
+            <input type="radio" th:field="*{ticketType}" th:value="Normalny"> Normalny </input>
+        </div>
+        <div class="form-group">
+            <label>Wpisz kod rabatowy:</label>
+            <input type="text" th:field="*{discountCode}" class="form-control" placeholder="Podaj kod rabatowy"> </input>
+        </div>
+        <input type="submit" value="Kup bilety"/>
+    </form>
+
+</div>
+</html>

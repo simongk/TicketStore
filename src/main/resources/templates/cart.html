@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl" layout:decorator="onlineStore">
+    <div layout:fragment="content">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nazwa wydarzenia</th>
+                <th>Lokalizacja wydarzenia</th>
+                <th>Data wydarzenia</th>
+                <th>Cena za bilet</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="cart: ${carts}">
+                <td th:text="${cart.event.id}"></td>
+                <td th:text="${cart.event.name}"></td>
+                <td th:text="${cart.event.location}"></td>
+                <td th:text="${cart.event.date}"></td>
+                <td th:text="${cart.event.price}"></td>
+                <td th:text="${cart.totalCost}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <h2 th:text="'Koszt całości ' + ${order.finalCost} + ' zł '"></h2>
+        <p><button class="btn-primary">Zapłać za pomocą Przelewy 24</button></p>
+    </div>
+</html>

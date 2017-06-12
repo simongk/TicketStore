@@ -25,6 +25,7 @@ public class EventService {
             cart.setTicketQuantity(event.getTickets());
         }
         event.setTickets(event.getTickets() - cart.getTicketQuantity());
+        event.setSoldTickets(event.getSoldTickets() + cart.getTicketQuantity());
         addEventToDatabase(event);
     }
     public Event getEventByName(String name) {
