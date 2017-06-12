@@ -17,6 +17,7 @@
         </div>
     </div>
 
+
     <form th:action="@{'/mjm/{name}' (name=${event.name})}"
           th:object="${cart}" method="post">
         <div class="form-group">
@@ -34,7 +35,6 @@
             <input type="text" th:field="*{discountCode}" class="form-control" placeholder="Podaj kod rabatowy"> </input>
         </div>
         <input type="submit" value="Kup bilety"/>
-    </form>
-
+    </form
 </div>
 </html>
