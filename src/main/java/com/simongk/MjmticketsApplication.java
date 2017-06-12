@@ -39,6 +39,14 @@ public class MjmticketsApplication {
 			user2.setCarts(new ArrayList<>());
 			userRepository.save(user2);
 
+			User admin = new User();
+			admin.setPasswordHash("admin");
+			admin.setEmail("admin@admin.pl");
+			admin.setName("admin");
+			admin.setRole(Role.ADMIN);
+			admin.setCarts(new ArrayList<>());
+			userRepository.save(admin);
+
 		};
 
 	}
